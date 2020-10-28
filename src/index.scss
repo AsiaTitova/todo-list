@@ -1,0 +1,46 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  outline: none;
+  font-family: "PT Sans", "Arial", sans-serif;
+}
+
+body {
+  position: relative;
+  font-style: normal;
+  font-weight: normal;
+  background-color: #40e0d0;
+  color: #000000;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.container {
+  width: 1024px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+.todo {
+  min-height: 700px;
+  display: flex;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.todo__tasks {
+  width: 300px;
+  padding: 60px 30px;
+  background-color: #f1f1f1;
+}
+
+.todo__subtasks {
+  width: 724px;
+  background-color: #ffffff;
+}
