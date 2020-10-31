@@ -1,12 +1,27 @@
 import React, {useState} from "react";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-import PropTypes from "prop-types";
+
+import DB from "./assets/bd.json";
 
 import Tasks from "./components/Tasks/Tasks";
 import AddTasks from "./components/AddTasks/AddTasks";
 import PopupSuccess from "./components/PopupSuccess/PopupSuccess";
+import PopupConfirmDeletion from "./components/PopupConfirmDeletion/PopupConfirmDeletion";
 
 const App = () => {
+  const [lists, setLists] = useState(DB.lists.map(item => {
+    item.color = DB.colors.filter(color => color.id === item.colorId)[0].name;
+    return item;
+  }));
+
+  const onAddNewTask = newTask => {
+    console.log("Добавлен список: ", newTask);
+    const newTasksList = [
+      ...lists,
+      newTask
+    ];
+    setLists(newTasksList);
+  }
 
   return (
     <BrowserRouter>
@@ -15,46 +30,12 @@ const App = () => {
           <div className="container">
             <div className="todo">
             <div className="todo__tasks tasks">
-                <Tasks items={[
-                  {
-                    id: 1,
-                    className: "tasks__item",
-                    name: "Фронтенд",
-                    color: "#c9d1d3",
-                    coloring: "gray",
-                    active: true,
-                  },
-                  {
-                    id: 2,
-                    className: "tasks__item",
-                    name: "Фильмы и Сериалы",
-                    color: "#42b883",
-                    coloring: "green",
-                  },
-                  {
-                    id: 3,
-                    className: "tasks__item",
-                    name: "Реакт",
-                    color: "#64c4ed",
-                    coloring: "blue",
-                  },
-                  {
-                    id: 4,
-                    className: "tasks__item",
-                    name: "Заказать пиццу",
-                    color: "#ffbbcc",
-                    coloring: "pink",
-                  },
-                  {
-                    id: 5,
-                    className: "tasks__item",
-                    name: "Собрать ребенка в сад",
-                    color: "#b6e68d",
-                    coloring: "lime",
-                  }
-                ]}
+                <Tasks items={lists}
+                colors={DB.colors}
                 isRemovable={true} />
-                <AddTasks />
+                <AddTasks
+                colors={DB.colors}
+                onAddNewTask={onAddNewTask} />
               </div>
               <div className="todo__subtasks"></div>
               </div>
@@ -65,8 +46,10 @@ const App = () => {
                   name: "Задача",
                   task: "Список",
                 }
-              }
-              showPopup={false} />
+              } />
+            </div>
+            <div className="popup">
+              <PopupConfirmDeletion />
             </div>
         </Route>
       </Switch>

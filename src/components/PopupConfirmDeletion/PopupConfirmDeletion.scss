@@ -1,4 +1,4 @@
-.popup-success__window {
+.popup-error__window {
   position: fixed;
   top: 0;
   left: 0;
@@ -16,12 +16,12 @@
   border-radius: 10px;
 }
 
-.popup-success__wrap {
+.popup-error__wrap {
   display: flex;
   justify-content: space-between;
 }
 
-.popup-success__title {
+.popup-error__title {
   margin-bottom: 30px;
   font-size: 18px;
   line-height: 20px;
@@ -29,7 +29,7 @@
   text-align: center;
 }
 
-.popup-success__cross {
+.popup-error__cross {
   width: 20px;
   height: 20px;
   background-color: transparent;
@@ -44,22 +44,22 @@
   }
 }
 
-.popup-success__img {
+.popup-error__img {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-.popup-success__content {
+.popup-error__content {
   font-size: 18px;
   line-height: 20px;
   text-align: center;
   margin-bottom: 25px;
 }
 
-.popup-success__close {
+.popup-error__close {
   display: block;
-  width: 150px;
+  width: 100px;
   padding: 10px;
   margin: 0 auto;
   text-align: center;
