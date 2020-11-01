@@ -19,6 +19,11 @@
       "id": 4,
       "name": "Выгулять собаку",
       "colorId": 7
+    },
+    {
+      "name": "Книги",
+      "colorId": 5,
+      "id": 5
     }
   ],
   "tasks": [
@@ -97,6 +102,30 @@
       "text": "Теория Большого Взрыва",
       "completed": true,
       "quickly": false
+    },
+    {
+      "listId": 1,
+      "text": "Яйца",
+      "completed": false,
+      "id": 18
+    },
+    {
+      "listId": 5,
+      "text": "Выразительный JavaScript",
+      "completed": false,
+      "id": 19
+    },
+    {
+      "listId": 5,
+      "text": "Код. Тайный язык информатики",
+      "completed": false,
+      "id": 20
+    },
+    {
+      "listId": 5,
+      "text": "Java Script. Подробное руководство",
+      "completed": false,
+      "id": 21
     }
   ],
   "colors": [

@@ -21,14 +21,14 @@ const AddSubtask = ({list, onAddNewSubtask}) => {
       "quickly": checkboxValue
     }
 
-    axios.post("http://localhost:3001/tasks/" + list.id, newSubtask).then(({data}) => {
+    axios.post("http://localhost:3001/tasks/", newSubtask).then(({data}) => {
       onAddNewSubtask(list.id, data)
       resetInputSubtask();
     })
   }
 
   const resetInputSubtask = () => {
-    setInputValue('');
+    setInputValue("");
   }
 
   return (

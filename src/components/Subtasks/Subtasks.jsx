@@ -9,7 +9,7 @@ import './Subtasks.scss';
 
 const Subtasks = ({list, onRemove, isRemovable, onEditTitle, onAddNewSubtask}) => {
 
-  const onRemoveSubtask = () => {
+  const onRemoveSubtask = (item) => {
     if (window.confirm("Вы действительно хотите удалить задачу?")) {
       onRemove(item);
     }
