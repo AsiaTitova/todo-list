@@ -1,12 +1,19 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import axios from 'axios';
 
 import Circle from "../Circle/Circle";
 
 import './AddTasks.scss';
 
 const AddTasks = ({colors, onAddNewTask, openPopup}) => {
-  const [selectedColor, selectColor] = useState(colors[0].id); // цвет метки
+  const [selectedColor, selectColor] = useState(3); // цвет метки
   const [inputValue, setInputValue] = useState("");            // текст, введеный в поле "название задачи"
+
+  useEffect(() => {
+    if (Array.isArray(colors)) {
+      selectColor(colors[0].id);
+    }
+  }, [colors]);
 
   // добавление новой задачи
 
@@ -15,10 +22,18 @@ const AddTasks = ({colors, onAddNewTask, openPopup}) => {
       alert("Введите название задачи");
       return;
     }
-
-    onAddNewTask({id: Math.random(), name: inputValue, color: colors.filter(color => color.id === selectedColor)[0].name});
-    setInputValue("");
-    selectColor(colors[0].id);
+    axios
+      .post('http://localhost:3001/lists', {
+        name: inputValue,
+        colorId: selectedColor
+      })
+      .then(({ data }) => {
+        const color = colors.filter(c => c.id === selectedColor)[0].name;
+        const listObj = { ...data, color: { name: color } };
+        onAddNewTask(listObj);
+        setInputValue('');
+        selectColor(colors[0].id);
+      });
   }
 
   return (

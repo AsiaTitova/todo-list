@@ -20,7 +20,7 @@
     "test": "npm test",
     "eslint": "eslint --ext .jsx --ext .js src/",
     "eject": "react-scripts eject",
-    "fake-json": "json-server ./src/assets/db.json --watch --port 3001"
+    "fake-json": "json-server ./src/assets/bd.json --watch --port 3001"
   },
   "devDependencies": {
     "@babel/core": "7.8.7",
@@ -32,11 +32,13 @@
     "eslint-plugin-react": "7.18.3",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.4",
-    "url-loader": "^4.1.1",
     "stylelint-config-htmlacademy": "0.1.x",
+    "svg-url-loader": "^6.0.0",
+    "url-loader": "^4.1.1",
     "webpack": "^4.41.6",
     "webpack-cli": "3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "json-server": "0.16.2"
   },
   "eslintConfig": {
     "extends": "react-app"

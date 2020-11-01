@@ -1,0 +1,103 @@
+.form-subtasks {
+  margin-top: 50px;
+}
+
+.form-subtasks__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+
+  &--button {
+    justify-content: flex-start;
+  }
+}
+
+.form-subtasks__input {
+  width: 450px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+
+  &:hover,
+  &:focus {
+    border: 1px solid #7c7c7c;
+    padding: 9px 10px;
+  }
+}
+
+.form-subtasks__label-quickly {
+  position: relative;
+  display: block;
+  padding: 2px 0 2px 25px;
+  cursor: pointer;
+
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   width: 20px;
+  //   height: 20px;
+  //   top: 0;
+  //   left: 0;
+  //   border: 2px solid #e8e8e8;
+  //   border-radius: 50%;
+  //   background-color: transparent;
+  // }
+}
+
+.form-subtasks__quickly {
+  margin-left: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+// .form-subtasks__quickly:hover + .form-subtasks__label-quickly::before {
+//   background-color: #e8e8e8;
+//   border: 2px solid #e8e8e8;
+//   background-image: url("../../assets/img/check.svg");
+//   background-repeat: no-repeat;
+//   background-size: 12px 8px;
+//   background-position: 50% 50%;
+// }
+
+// .form-subtasks__quickly:checked + .form-subtasks__label-quickly::before {
+//   background-color: #ff6464;
+//   border: 2px solid #ff6464;
+//   background-image: url("../../assets/img/check.svg");
+//   background-repeat: no-repeat;
+//   background-size: 12px 8px;
+//   background-position: 50% 50%;
+// }
+
+
+.form-subtasks__button {
+  width: 100px;
+  border: none;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.15px;
+  color: #767676;
+  background-color: #eceff0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  cursor: pointer;
+
+  &--plus {
+    margin-right: 10px;
+    padding-left: 20px;
+    color: #ffffff;
+    background-color: #40e0d0;
+    background-image: url("../../assets/img/plus-white.svg");
+    background-size: 10px 10px;
+    background-position: 10px 13px;
+    background-repeat: no-repeat;
+  }
+
+  &:hover,
+  &:focus {
+    transition: transform 0.3s ease-in-out;
+    transform: scale(1.1);
+  }
+}

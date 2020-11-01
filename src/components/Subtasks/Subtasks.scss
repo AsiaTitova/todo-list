@@ -1,0 +1,125 @@
+.subtasks__wrap {
+  display: flex;
+  align-items: center;
+  padding-bottom: 28px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid  #f2f2f2;
+}
+
+.subtasks__title {
+  font-weight: bold;
+  font-size: 35px;
+  line-height: 36px;
+  color: #40e0d0;
+}
+
+.subtasks__list {
+  list-style-type: none;
+}
+
+.subtasks__item {
+  padding: 12px 10px;
+  margin-bottom: 5px;
+  letter-spacing: 0.15px;
+  cursor: pointer;
+}
+
+.subtasks__checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.subtasks__label {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+  border: 2px solid #e8e8e8;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.subtasks__input:hover + .subtasks__label {
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+  background-color: #e8e8e8;
+  border: 2px solid #e8e8e8;
+  background-image: url("../../assets/img/check.svg");
+  background-repeat: no-repeat;
+  background-size: 12px 8px;
+  background-position: 50% 50%;
+}
+
+.subtasks__input:checked + .subtasks__label {
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+  background-color: #40e0d0;
+  border: 2px solid #40e0d0;
+  background-image: url("../../assets/img/check.svg");
+  background-repeat: no-repeat;
+  background-size: 12px 8px;
+  background-position: 50% 50%;
+}
+
+.subtasks__label-quickly {
+  display: block;
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.subtasks__input-quickly:checked + .subtasks__label-quickly {
+  background-color: #ff6464;
+}
+
+.subtasks__name {
+  width: 350px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.subtasks__edit,
+.subtasks__close {
+  width: 11px;
+  height: 11px;
+  margin-left: 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  opacity: 0.1;
+
+  &:hover,
+  &:focus {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0.7;
+  }
+}
+
+.subtasks__close {
+  background-image: url("../../assets/img/cross.svg");
+  background-repeat: no-repeat;
+  background-size: 11px 11px;
+  background-position: 50% 50%;
+}
+
+.subtasks__edit {
+  width: 15px;
+  height: 15px;
+  margin-left: 15px;
+}
+
+.subtasks__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.subtasks__no {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 24px;
+  color: #c9d1d3;
+}

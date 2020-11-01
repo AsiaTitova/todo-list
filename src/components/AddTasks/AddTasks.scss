@@ -29,10 +29,15 @@
   color: #767676;
   background-color: #eceff0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-image: url("../../assets/img/plus.svg");
+  background-size: 10px 10px;
+  background-position: 63px 13px;
+  background-repeat: no-repeat;
   cursor: pointer;
 
   &:hover,
   &:focus {
+    transition: transform 0.3s ease-in-out;
     transform: scale(1.1);
   }
 }
