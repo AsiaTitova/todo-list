@@ -36,8 +36,10 @@ const AddSubtask = ({list, onAddNewSubtask}) => {
         <div className="form-subtasks__wrap">
           <label className="form-subtasks__label visually-hidden"></label>
           <input onChange={evt => setInputValue(evt.target.value)} className="form-subtasks__input" type="text" placeholder="Текст подзадачи" value={inputValue}/>
-          <label className="form-subtasks__label-quickly" htmlFor="quickly">Срочная задача</label>
-          <input onChange={evt => setCheckboxValue(evt.target.checked)} className="form-subtasks__quickly" type="checkbox" name="quickly" id="quickly" checked={checkboxValue}/>
+          <div className="form-subtasks__checkbox">
+            <label className="form-subtasks__label-quickly" htmlFor="quickly">Срочная задача</label>
+            <input onChange={evt => setCheckboxValue(evt.target.checked)} className="form-subtasks__quickly" type="checkbox" name="quickly" id="quickly" checked={checkboxValue}/>
+          </div>
         </div>
         <div className="form-subtasks__wrap form-subtasks__wrap--button">
           <button onClick={() => addSubtask()} className="form-subtasks__button form-subtasks__button--plus" type="button">Добавить</button>

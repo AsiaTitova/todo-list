@@ -37,22 +37,76 @@ body {
   width: 1024px;
   margin: 0 auto;
   padding: 50px 0;
+
+  @media (max-width: 1023px) {
+    width: 768px;
+  }
+
+  @media (max-width: 768px) {
+    width: 320px;
+  }
 }
 
 .todo {
+  position: relative;
+  width: 1000px;
+  margin: 0 auto;
   min-height: 400px;
   display: flex;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+  @media (max-width: 1023px) {
+    width: 768px;
+  }
+
+  @media (max-width: 768px) {
+    width: 280px;
+  }
 }
 
 .todo__tasks {
   width: 300px;
   padding: 60px 30px;
   background-color: #f4f6f8;
+
+  @media (max-width: 1023px) {
+    width: 100px;
+    padding: 50px 20px 150px 20px;
+  }
+
+  @media (max-width: 768px) {
+    width: 80px;
+    padding: 30px 15px 150px 15px;
+  }
 }
 
 .todo__subtasks {
   padding: 60px;
-  width: 724px;
+  width: 700px;
   background-color: #ffffff;
+
+  @media (max-width: 1023px) {
+    width: 668px;
+    padding: 50px 20px 250px 20px;
+  }
+
+  @media (max-width: 768px) {
+    width: 200px;
+    padding: 30px 15px 150px 15px;
+  }
+}
+
+.todo__form-tasks {
+  @media (max-width: 1023px) {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 40px 20px;
+    background-color: #f4f6f8;
+  }
+
+  @media (max-width: 768px) {
+    padding: 30px 15px;
+  }
 }
