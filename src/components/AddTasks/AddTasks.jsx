@@ -28,7 +28,7 @@ const AddTasks = ({colors, onAddNewTask, openPopup}) => {
         colorId: selectedColor
       })
       .then(({ data }) => {
-        const color = colors.filter(c => c.id === selectedColor)[0].name;
+        const color = colors.filter(color => color.id === selectedColor)[0].name;
         const listObj = { ...data, color: { name: color } };
         onAddNewTask(listObj);
         setInputValue('');

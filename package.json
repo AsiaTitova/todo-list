@@ -19,7 +19,6 @@
     "build": "webpack --mode production",
     "start": "webpack-dev-server",
     "test": "npm test",
-    "eslint": "eslint --ext .jsx --ext .js src/",
     "eject": "react-scripts eject",
     "fake-json": "json-server ./src/assets/bd.json --watch --port 3001"
   },
