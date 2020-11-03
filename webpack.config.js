@@ -6,14 +6,18 @@ module.exports = {
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
-        path: publicDirPath
+        path: publicDirPath,
+        publicPath: '/'
     },
     devServer: {
         contentBase: publicDirPath,
         open: true,
         compress: true,
         port: 1337,
-        historyApiFallback: true
+        historyApiFallback: true,
+        proxy: {
+          "/api": "http://localhost:3001"
+      }
     },
     module: {
         rules: [

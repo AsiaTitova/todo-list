@@ -21,18 +21,12 @@
       "colorId": 7
     },
     {
-      "name": "Книги",
-      "colorId": 5,
+      "name": "Создать приложение ToDo list",
+      "colorId": 8,
       "id": 5
     }
   ],
   "tasks": [
-    {
-      "id": 5,
-      "listId": 1,
-      "text": "Молоко",
-      "completed": false
-    },
     {
       "id": 6,
       "listId": 1,
@@ -44,7 +38,7 @@
       "id": 7,
       "listId": 1,
       "text": "Сыр",
-      "completed": false,
+      "completed": true,
       "quickly": false
     },
     {
@@ -58,7 +52,7 @@
       "id": 9,
       "listId": 1,
       "text": "Сахар",
-      "completed": false,
+      "completed": true,
       "quickly": false
     },
     {
@@ -111,21 +105,60 @@
     },
     {
       "listId": 5,
-      "text": "Выразительный JavaScript",
-      "completed": false,
+      "text": "Оформить дизайн",
+      "completed": true,
       "id": 19
     },
     {
       "listId": 5,
-      "text": "Код. Тайный язык информатики",
-      "completed": false,
+      "text": "Реализовать сценарий \"Добавление новых списков задач\"",
+      "completed": true,
       "id": 20
     },
     {
       "listId": 5,
-      "text": "Java Script. Подробное руководство",
-      "completed": false,
+      "text": "Реализовать сценарий \"Удаление списков задач\"",
+      "completed": true,
       "id": 21
+    },
+    {
+      "listId": 5,
+      "text": "Реализовать сценарий \"Добавление подзадач\"",
+      "completed": true,
+      "id": 22
+    },
+    {
+      "listId": 5,
+      "text": "Реализовать сценарий \"Удаление подзадач\"",
+      "completed": true,
+      "id": 23
+    },
+    {
+      "listId": 5,
+      "text": "Реализовать сценарий \"Добавление срочной задачи\"",
+      "completed": true,
+      "id": 24
+    },
+    {
+      "listId": 5,
+      "text": "Сделать маршрутизацию проекта",
+      "completed": false,
+      "quickly": true,
+      "id": 25
+    },
+    {
+      "listId": 5,
+      "text": "Подключить React Redux",
+      "completed": false,
+      "quickly": true,
+      "id": 26
+    },
+    {
+      "listId": 5,
+      "text": "Сделать блок Регистрации и авторизации",
+      "completed": false,
+      "quickly": true,
+      "id": 27
     }
   ],
   "colors": [

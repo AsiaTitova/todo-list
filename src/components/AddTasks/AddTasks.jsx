@@ -40,7 +40,7 @@ const AddTasks = ({colors, onAddNewTask, openPopup}) => {
       <form className="todo__form-tasks form-tasks">
         <div className="form-tasks__wrap">
           <label className="form-tasks__label"></label>
-          <input onChange={evt => setInputValue(evt.target.value)} className="form-tasks__input" type="text" placeholder="Название задачи" value={inputValue}/>
+          <input onChange={evt => setInputValue(evt.target.value)} className="form-tasks__input" type="text" placeholder="Добавьте новый список задач" value={inputValue}/>
           <div className="form-tasks__colors colors">
             {colors.map(color => (
               <Circle
