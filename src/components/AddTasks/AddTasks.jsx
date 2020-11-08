@@ -5,7 +5,7 @@ import Circle from "../Circle/Circle";
 
 import './AddTasks.scss';
 
-const AddTasks = ({colors, onAddNewTask, openPopup}) => {
+const AddTasks = ({colors, onAddNewTask}) => {
   const [selectedColor, selectColor] = useState(3); // цвет метки
   const [inputValue, setInputValue] = useState("");            // текст, введеный в поле "название задачи"
 

@@ -1,103 +1,207 @@
 import React, {useState, useEffect} from "react";
-import {Route, useHistory} from "react-router-dom";
-import axios from "axios";
+// import {Route, useHistory} from "react-router-dom";
+import {connect} from "react-redux";
+import fire from './config/fire';
+import { FirebaseState } from "./context/farebase/FarebaseState";
+// import {lists} from "./actions/actionCreator";
+// import axios from "axios";
 
-import {Tasks, AddTasks, Subtasks, PopupSuccess, PopupConfirmDeletion} from "./components";
+import {Todo, Login} from "./components";
 
 const App = () => {
-  const [lists, setLists] = useState(null);
-  const [colors, setColors] = useState(null);
-  const [activeItem, setActiveItem] = useState(null);
-  let history = useHistory();
+  // const [lists, setLists] = useState(null);
+  // const [colors, setColors] = useState(null);
+  // const [users, setUsers] = useState(null);
+  // const [activeItem, setActiveItem] = useState(null);
+  const [user, setUser] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [hasAccount, setHasAccount] = useState(false);
+
+  const clearInputs = () => {
+    setEmail('')
+    setPassword('')
+  }
+
+  const clearErrors = () => {
+    setEmailError('')
+    setPasswordError('')
+  }
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    clearErrors();
+    fire
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch((err) => {
+        switch(err.code) {
+          case "auth/invalid-email":
+          case "auth/user-disabled":
+          case "auth/user-not-found":
+            setEmailError(err.message);
+            break;
+          case "auth/wrong-password":
+            setPasswordError(err.message);
+            break;
+        }
+      })
+  }
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+    clearErrors()
+    fire
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .catch((err) => {
+        switch(err.code) {
+          case "auth/email-already-in-use":
+          case "auth/invalid-email":
+            setEmailError(err.message);
+            break;
+          case "auth/weak-password":
+            setPasswordError(err.message);
+            break;
+        }
+      })
+  }
+
+  const handleLogout = () => {
+    fire.auth().signOut();
+  }
+
+  const authListener = () => {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        clearInputs()
+        setUser(user)
+        console.log(user.uid)
+      } else {
+        setUser("")
+      }
+    })
+  }
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/lists?_expand=color&_embed=tasks')
-      .then(({ data }) => {
-        setLists(data);
-      });
-    axios.get('http://localhost:3001/colors').then(({ data }) => {
-      setColors(data);
-    });
+    authListener()
   }, []);
 
-  const onAddNewTask = newTask => {
-    const newTasksList = [
-      ...lists,
-      newTask
-    ];
-    setLists(newTasksList);
-  }
+//  let history = useHistory();
+//   useEffect(() => {
+//     axios.get('http://localhost:3001/lists?_expand=color&_embed=tasks').then(({ data }) => {
+//       setLists(data);
+//     });
+//     axios.get('http://localhost:3001/colors').then(({ data }) => {
+//       setColors(data);
+//     });
+//     axios.get('http://localhost:3001/users').then(({ data }) => {
+//       setUsers(data);
+//     });
+//   }, []);
 
-  const onAddNewSubtask = (listId, newSubtask) => {
-    const newSubtasks = lists.map(item  => {
-      if (item.id === listId) {
-        item.tasks = [...item.tasks, newSubtask];
-      }
-      return item
-    });
-    setLists(newSubtasks);
-  }
+//   const onLoginNewUser = newUser => {
+//     const newUsersList = [...users, newUser];
+//     setUsers(newUsersList);
+//   }
 
-  const onEditNameTask = (id, title) => {
-    const newTask = lists.map(item  => {
-      if (item.id === id) {
-        item.name = title;
-      }
-      return item
-    });
-    setLists(newTask);
-  };
+//   const onAddNewTask = newTask => {
+//     const newTasksList = [
+//       ...lists,
+//       newTask
+//     ];
+//     setLists(newTasksList);
+//   }
 
-  const onRemoveSubtask = (listId, subtaskId) => {
-    if (window.confirm('Вы действительно хотите удалить задачу?')) {
-      const newList = lists.map(item => {
-        if (item.id === listId) {
-          item.tasks = item.tasks.filter(task => task.id !== subtaskId);
-        }
-        return item;
-      });
-      setLists(newList);
-      axios.delete('http://localhost:3001/tasks/' + subtaskId).catch(() => {
-        alert('Не удалось удалить задачу');
-      });
-    }
-  };
+//   const onAddNewSubtask = (listId, newSubtask) => {
+//     const newSubtasks = lists.map(item  => {
+//       if (item.id === listId) {
+//         item.tasks = [...item.tasks, newSubtask];
+//       }
+//       return item
+//     });
+//     setLists(newSubtasks);
+//   }
 
-  useEffect(() => {
-    const listId = history.location.pathname.split('/lists/')[1];
-    if (lists) {
-      const list = lists.find(list => list.id === Number(listId));
-      setActiveItem(list);
-    }
-  }, [lists, history.location.pathname]);
+//   const onEditNameTask = (id, title) => {
+//     const newTask = lists.map(item  => {
+//       if (item.id === id) {
+//         item.name = title;
+//       }
+//       return item
+//     });
+//     setLists(newTask);
+//   };
 
-  const onCompleteSubtask = (listId, subtaskId, completed) => {
-    const newList = lists.map(list => {
-      if (list.id === listId) {
-        list.tasks = list.tasks.map(task => {
-          if (task.id === subtaskId) {
-            task.completed = completed;
-          }
-          return task;
-        });
-      }
-      return list;
-    });
-    setLists(newList);
-    axios
-      .patch('http://localhost:3001/tasks/' + subtaskId, {
-        completed
-      })
-      .catch(() => {
-        alert('Не удалось обновить задачу');
-      });
-  };
+//   const onRemoveSubtask = (listId, subtaskId) => {
+//     if (window.confirm('Вы действительно хотите удалить задачу?')) {
+//       const newList = lists.map(item => {
+//         if (item.id === listId) {
+//           item.tasks = item.tasks.filter(task => task.id !== subtaskId);
+//         }
+//         return item;
+//       });
+//       setLists(newList);
+//       axios.delete('http://localhost:3001/tasks/' + subtaskId).catch(() => {
+//         alert('Не удалось удалить задачу');
+//       });
+//     }
+//   };
+
+//   useEffect(() => {
+//     const listId = history.location.pathname.split('/lists/')[1];
+//     if (lists) {
+//       const list = lists.find(list => list.id === Number(listId));
+//       setActiveItem(list);
+//     }
+//   }, [lists, history.location.pathname]);
+
+//   const onCompleteSubtask = (listId, subtaskId, completed) => {
+//     const newList = lists.map(list => {
+//       if (list.id === listId) {
+//         list.tasks = list.tasks.map(task => {
+//           if (task.id === subtaskId) {
+//             task.completed = completed;
+//           }
+//           return task;
+//         });
+//       }
+//       return list;
+//     });
+//     setLists(newList);
+//     axios
+//       .patch('http://localhost:3001/tasks/' + subtaskId, {
+//         completed
+//       })
+//       .catch(() => {
+//         alert('Не удалось обновить задачу');
+//       });
+//   };
 
   return (
-    <React.Fragment>
-      <div className="container">
-        <div className="todo">
+    <div className="todo__container">
+        <FirebaseState>
+          {user ? (
+            <Todo handleLogout={handleLogout} />
+          ) : (
+            <Login
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              handleLogin={handleLogin}
+              handleSignup={handleSignup}
+              hasAccount={hasAccount}
+              setHasAccount={setHasAccount}
+              emailError={emailError}
+              passwordError={passwordError}
+            />
+          )}
+        </FirebaseState>
+      </div>
+        /* <div className="todo">
           <div className="todo__tasks tasks">
             {lists ? (<Tasks items={lists}
             colors={colors}
@@ -147,10 +251,20 @@ const App = () => {
         } />
       </div>
       <div className="popup">
-        <PopupConfirmDeletion />
-      </div>
-    </React.Fragment>
+        <PopupConfirmDeletion /> */
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    items: state.lists.items
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setLists: (items => dispatch(setLists(items)))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

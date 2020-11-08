@@ -202,5 +202,21 @@
       "hex": "#FF6464",
       "name": "red"
     }
+  ],
+  "users": [
+    {
+      "email": "linda@mail.com",
+      "password": "111111"
+    }
+  ],
+  "login": [
+    {
+      "login": "linda"
+    }
+  ],
+  "profile": [
+    {
+
+    }
   ]
 }

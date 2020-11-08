@@ -5,3 +5,5 @@ export {default as PopupConfirmDeletion} from "./PopupConfirmDeletion/PopupConfi
 export {default as PopupSuccess} from "./PopupSuccess/PopupSuccess";
 export {default as Subtasks} from "./Subtasks/Subtasks";
 export {default as Tasks} from "./Tasks/Tasks";
+export {default as Header} from "./Header/Header";
+export {default as Login} from "./Login/Login";
